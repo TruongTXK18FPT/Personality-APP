@@ -30,10 +30,6 @@ public class PersonalityStandard {
 
     @Column(columnDefinition = "TEXT")
     private String description;
-
-    @Column(name = "career_mapping_personality", columnDefinition = "TEXT")
-    private String careerMappingPersonality;
-
     public enum StandardType {
         DISC, MBTI
     }
