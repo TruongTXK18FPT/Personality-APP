@@ -272,19 +272,19 @@ public class PersonalityCalculationService {
 
     private void validateSubmission(QuizSubmissionDTO submission) {
         if (submission == null) {
-            throw new RuntimeException("Quiz submission cannot be null");
+            throw new QuizNotFoundException("Quiz submission cannot be null");
         }
 
         if (submission.getQuizId() == null) {
-            throw new RuntimeException("Quiz ID cannot be null");
+            throw new QuizNotFoundException("Quiz ID cannot be null");
         }
 
         if (submission.getUserId() == null) {
-            throw new RuntimeException("User ID cannot be null");
+            throw new QuizNotFoundException("User ID cannot be null");
         }
 
         if (submission.getAnswers() == null || submission.getAnswers().isEmpty()) {
-            throw new RuntimeException("Quiz answers cannot be null or empty");
+            throw new QuizNotFoundException("Quiz answers cannot be null or empty");
         }
 
         log.debug("Quiz submission validation passed for quiz: {} and user: {}",

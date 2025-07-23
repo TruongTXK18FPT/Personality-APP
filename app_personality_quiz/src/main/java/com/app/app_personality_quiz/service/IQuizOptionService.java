@@ -12,4 +12,10 @@ public interface IQuizOptionService {
     List<QuizOptionsDTO> getOptionsByTargetTrait(String targetTrait);
     List<QuizOptionsDTO> getOptionsByScoreValue(QuizOptions.ScoreValue scoreValue);
     List<QuizOptionsDTO> getOptionsGroupedByTargetTrait(Long questionId, String targetTrait);
+        QuizOptionsDTO createOption(QuizOptionsDTO optionDTO);
+    List<QuizOptionsDTO> createOptions(List<QuizOptionsDTO> optionDTOs);
+    QuizOptionsDTO updateOption(Long id, QuizOptionsDTO optionDTO);
+    void deleteOptionsByQuestionId(Long questionId);
+    long countOptionsByQuestionId(Long questionId);
+    boolean optionExists(Long id);
 }

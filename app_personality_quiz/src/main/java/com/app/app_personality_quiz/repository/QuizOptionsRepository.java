@@ -16,4 +16,5 @@ public interface QuizOptionsRepository extends JpaRepository<QuizOptions, Long> 
     List<QuizOptions> findByQuestionIdAndTargetTrait(Long questionId, String targetTrait);
     long countByQuestionId(Long questionId);
     void deleteByQuestionId(Long questionId);
+
 }

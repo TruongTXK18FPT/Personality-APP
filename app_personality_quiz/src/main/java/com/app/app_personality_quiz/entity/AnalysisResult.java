@@ -24,12 +24,10 @@ public class AnalysisResult {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
-
-    @Column(name = "user_id", nullable = false)
-    private String userId;
-
     @Column(name = "session_id", nullable = false, unique = true)
     private String sessionId;
+    @Column(name = "user_id", nullable = false)
+    private String userId; // Ensure this is Long, not String
 
     @Column(name = "mbti_type", length = 10)
     private String mbtiType;

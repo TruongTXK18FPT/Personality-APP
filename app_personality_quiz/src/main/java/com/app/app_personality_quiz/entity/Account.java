@@ -23,7 +23,8 @@ import jakarta.persistence.GenerationType;
 public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "user_id", nullable = false, unique = true)
+    private String id;
     @Column(nullable = false, unique = true)
     private String fullName;
     @Column(nullable = false, unique = true)

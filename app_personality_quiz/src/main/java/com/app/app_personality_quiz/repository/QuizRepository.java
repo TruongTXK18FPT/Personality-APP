@@ -14,4 +14,5 @@ List<QuizDTO> getAllQuiz();
     QuizDTO getQuizById(Long id);
     QuizDTO getQuizWithQuestions(Long id);
     List<QuizDTO> getQuizByCategory(Long categoryId);
-    QuizDTO updateQuiz(Long id, QuizRequestDTO quizRequestDTO);}
+    List<Quiz> findByCategoryId(Long categoryId);
+}

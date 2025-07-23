@@ -3,8 +3,6 @@ package com.app.app_personality_quiz.dto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 import java.util.Map;
 
 @Data
@@ -16,6 +14,4 @@ public class PersonalityResultDTO {
     private String keyTraits;
     private String description;
     private Map<String, Integer> scores;
-    private List<String> careerRecommendations;
-    private List<String> universityRecommendations;
 }
