@@ -22,7 +22,7 @@ import jakarta.persistence.GenerationType;
 @Table(name = "accounts")   
 public class Account {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "user_id", nullable = false, unique = true)
     private String id;
     @Column(nullable = false, unique = true)

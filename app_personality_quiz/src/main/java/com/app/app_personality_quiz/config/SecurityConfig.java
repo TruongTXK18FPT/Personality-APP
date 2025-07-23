@@ -55,11 +55,45 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(authz -> authz
-                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Allow all OPTIONS requests
+                        // Allow all OPTIONS requests
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+
+                        // Swagger UI and API documentation paths - allow public access
+                        .requestMatchers("/swagger-ui/**").permitAll()
+                        .requestMatchers("/swagger-ui.html").permitAll()
+                        .requestMatchers("/api-docs/**").permitAll()
+                        .requestMatchers("/api-docs/swagger-config").permitAll()
+                        .requestMatchers("/v3/api-docs/**").permitAll()
+                        .requestMatchers("/swagger-resources/**").permitAll()
+                        .requestMatchers("/webjars/**").permitAll()
+
+                        // Authentication endpoints - public access
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/auth/register").permitAll()
+
+                        // Authentication endpoints - require authentication
                         .requestMatchers("/api/auth/logout").authenticated()
                         .requestMatchers("/api/auth/profile").authenticated()
+
+                        // Quiz endpoints - require authentication
+                        .requestMatchers(HttpMethod.GET, "/api/quiz/category/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/quiz/type/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/quiz/*/questions").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/quiz/question/*/options").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/quiz/*/take").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/api/quiz/submit").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/quiz/result/**").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/api/quiz/my-results").authenticated()
+
+                        // Chat endpoints - require authentication (with X-User-Id header)
+                        .requestMatchers(HttpMethod.GET, "/chat/sessions").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/chat/start").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/chat/message").authenticated()
+                        .requestMatchers(HttpMethod.GET, "/chat/history/**").authenticated()
+                        .requestMatchers(HttpMethod.POST, "/chat/analyze/**").authenticated()
+                        .requestMatchers(HttpMethod.DELETE, "/chat/**").authenticated()
+
+                        // All other requests require authentication
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);

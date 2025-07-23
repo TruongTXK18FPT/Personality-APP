@@ -7,14 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.app.app_personality_quiz.entity.QuizResult;
 
 public interface QuizResultRepository extends JpaRepository<QuizResult, Long> {
-    
-    // Custom query methods can be added here if needed
-    // For example, to find results by user email or quiz type
-    List<QuizResult> findByAccountEmail(String email);
-    
-    List<QuizResult> findByQuizType(String quizType);
-
-    //find by user id
-    List<QuizResult> findByAccountId(Long accountId);
+    List<QuizResult> findByUserId(String userId);
     
 }

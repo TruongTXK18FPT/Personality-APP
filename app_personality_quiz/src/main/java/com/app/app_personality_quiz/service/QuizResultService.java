@@ -54,7 +54,7 @@ public class QuizResultService implements IQuizResultService {
             quizResult.setAttemptOrder(quizResultDTO.getAttemptOrder());
             quizResult.setResultJson(objectMapper.writeValueAsString(personalityResult));
             quizResult.setQuizId(submission.getQuizId());
-            quizResult.setUserId(Long.valueOf(userId));
+            quizResult.setUserId(userId);
             quizResult.setPersonalityId(personalityStandard != null ? personalityStandard.getId() : null);
 
             QuizResult saved = quizResultRepository.save(quizResult);
@@ -78,7 +78,7 @@ public class QuizResultService implements IQuizResultService {
 
     @Override
     public UserQuizResultsDTO getMyQuizResults(String userId, String authorizationHeader) {
-        List<QuizResult> results = quizResultRepository.findByAccountId(Long.valueOf(userId));
+        List<QuizResult> results = quizResultRepository.findByUserId(userId);
         if (results.isEmpty()) {
             return UserQuizResultsDTO.builder()
                     .userId(userId)

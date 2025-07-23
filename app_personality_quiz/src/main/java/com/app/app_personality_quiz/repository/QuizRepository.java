@@ -9,10 +9,5 @@ import java.util.List;
 
 @Repository
 public interface QuizRepository extends JpaRepository<Quiz, Long> {
-
-List<QuizDTO> getAllQuiz();
-    QuizDTO getQuizById(Long id);
-    QuizDTO getQuizWithQuestions(Long id);
-    List<QuizDTO> getQuizByCategory(Long categoryId);
     List<Quiz> findByCategoryId(Long categoryId);
 }

@@ -32,7 +32,7 @@ public class    QuizResult {
     @JdbcTypeCode(SqlTypes.JSON)
     private String resultJson;
     @Column(name = "user_id", nullable = false)
-    private Long userId;
+    private String userId;
 
     @Column(name = "quiz_id", nullable = false)
     private Long quizId;
